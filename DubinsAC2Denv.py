@@ -252,9 +252,7 @@ class DubinsAC2Denv(gym.Env):
 
     def _terminal_reward_2(self):
         info = 'win/loss'
-        if self.ATA_Deg < 50:
-                print("gg")
-                terminalState = True
+
         return reward, terminalState, {'result': info,
                                        'redObs': self._get_sta_env_v2_redAC()}
 
