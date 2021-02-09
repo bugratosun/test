@@ -46,10 +46,10 @@ class DubinsAC2Denv(gym.Env):
 	# blue_bank: roll(bank) angle of blue ac
 	
 
-        lowlim=np.array([-800, -self.window_height, -180, -180, -180, -180, 0, -90]) # lower limit of feature values
-        highlim=np.array([800, self.window_height,180,180,180,180,359,90]) # upper limit of feature values
+        lowlim=np.array([-800., -self.window_height, -180., -180., -180., -180., 0., -90.]) # lower limit of feature values
+        highlim=np.array([800., self.window_height,180.,180.,180.,180.,359.,90.]) # upper limit of feature values
 
-        self.observation_space = spaces.Box(low = -900, high = 800, shape=(1,), dtype=np.float32) # creating the observation space
+        self.observation_space = spaces.Box(low = lowlim, high = highlim, dtype=np.float32) # creating the observation space
 
         if actions == 'discrete': # using discrete actions
             self.action_space = spaces.Discrete(15)
@@ -251,15 +251,15 @@ class DubinsAC2Denv(gym.Env):
 
 
     def _terminal_reward_2(self):
-
         info = 'win/loss'
-        terminalState = False
-        reward = 0
-
+        if self.ATA_Deg < 50:
+                print("gg")
+                terminalState = True
         return reward, terminalState, {'result': info,
                                        'redObs': self._get_sta_env_v2_redAC()}
 
     def _calc_posDiff_hdg_rad(self, start: np.array, dest: np.array):
+	    # start: 
 
         posDiff = dest - start
         angleDiff = np.arctan2(posDiff[1], posDiff[0])
