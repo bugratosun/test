@@ -213,8 +213,8 @@ class DubinsAC2Denv(gym.Env):
                          self.ATA_deg,
                          self.AA_deg,
                          self.redATA_deg,
-                         np.rad2deg(Batt_rad[2]),
-                         np.rad2deg(Batt_rad[0])
+                         np.rad2deg(Batt_rad[2]), #blue yaw angle
+                         np.rad2deg(Batt_rad[0])  #blue bank angle
                          ], dtype=np.float32)
 
     def _get_sta_env_v2_redAC(self): # return state of red aircraft
@@ -245,8 +245,8 @@ class DubinsAC2Denv(gym.Env):
                          ATA_deg,
                          AA_deg,
                          redATA_deg,
-                         np.rad2deg(Ratt_rad[2]),
-                         np.rad2deg(Ratt_rad[0])
+                         np.rad2deg(Ratt_rad[2]), #red yaw angle	
+                         np.rad2deg(Ratt_rad[0])  #red bank angle
                          ], dtype=np.float32)
 
 
